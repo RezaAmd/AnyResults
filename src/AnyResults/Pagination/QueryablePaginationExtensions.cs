@@ -5,6 +5,44 @@ namespace AnyResults.Pagination;
 
 public static class QueryablePaginationExtensions
 {
+    public static async Task<PagedResult<T>> ToPagedResultAsync<T>(
+        this IQueryable<T> query,
+        PaginationQuery page,
+        CancellationToken cancellationToken = default) where T : class
+    {
+        if (!string.IsNullOrWhiteSpace(page.Sort))
+        {
+            var sort = page.Sort.Trim();
+            var descending = sort.StartsWith("-");
+            var property = descending ? sort[1..] : sort;
+
+            query = query.OrderByProperty(property, @descending);
+        }
+
+        query = query.AddDefaultOrderIfMissing();
+
+        query = query.AsNoTracking();
+
+        var total = await query.LongCountAsync(cancellationToken);
+
+        var items = await query
+            .Skip((page.Page - 1) * page.PageSize)
+            .Take(page.PageSize)
+            .ToListAsync(cancellationToken);
+
+        var totalPages = total == 0 ? 0 : (int)Math.Ceiling((double)total / page.PageSize);
+
+        return new PagedResult<T>(
+            items: items,
+            page: page.Page,
+            pageSize: page.PageSize,
+            totalCount: total,
+            totalPages: totalPages,
+            hasPrevious: page.Page > 1,
+            hasNext: page.Page < totalPages
+        );
+    }
+
     public static async Task<PagedResult<TOut>> ToPagedResultAsync<T, TOut>(
         this IQueryable<T> query,
         PaginationQuery page,
