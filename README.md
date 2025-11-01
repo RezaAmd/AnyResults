@@ -1,3 +1,4 @@
+<a href="https://www.nuget.org/packages/AnyResults" target="_blank"><img src="https://img.shields.io/nuget/dt/AnyResults"/></a>
 # AnyResults
 
 Unified result handling & data paging for .NET projects. Fast, simple, and clean.
@@ -11,7 +12,7 @@ Unified result handling & data paging for .NET projects. Fast, simple, and clean
 ```bash
 dotnet add package AnyResults
 ```
-<a href="https://www.nuget.org/packages/Http.Request.Builder" target="_blank"><img src="https://img.shields.io/nuget/dt/Http.Request.Builder"/></a>
+
 ## Examples
 ### 1. Basic Result:
 ```csharp
