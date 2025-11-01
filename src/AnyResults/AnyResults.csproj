@@ -4,7 +4,7 @@
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<Title>Any Results</Title>
-		<VersionPrefix>8.0.2</VersionPrefix>
+		<VersionPrefix>8.0.3</VersionPrefix>
 		<Authors>Reza Ahmadi</Authors>
 		<Description>Result wrapper for manage command (result) &amp; query (pagination) in .net</Description>
 		<Copyright></Copyright>
