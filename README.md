@@ -5,12 +5,13 @@ Unified result handling & data paging for .NET projects. Fast, simple, and clean
 ## Key Features
 
 - **`Result` / `Result<T>`** – Represent success or failure of any operation. Avoid throwing exceptions unnecessarily.
-- **PagedResult<T>** – Easily page your IQueryable data. Comes with extensions for LINQ.
-- **PaginationQuery** – Specify page number, page size, and sorting for PagedResult.
+- **`PagedResult<T>`** – Easily page your IQueryable data. Comes with extensions for LINQ.
+- **`PaginationQuery`** – Specify page number, page size, and sorting for PagedResult.
 
 ```bash
 dotnet add package AnyResults
 ```
+<a href="https://www.nuget.org/packages/Http.Request.Builder" target="_blank"><img src="https://img.shields.io/nuget/dt/Http.Request.Builder"/></a>
 ## Examples
 ### 1. Basic Result:
 ```csharp
@@ -34,14 +35,22 @@ if (result.IsSuccess)
 ```
 - **`Result` / `Result<T>`** – Represent success or failure of any operation. Supports implicit conversion between `Result` and `Result<T>` to simplify handling generic and non-generic results.
 ```csharp
-    public Result<int> Create(CreateTodoInputModel todoModel)
+    public Result<Todo> Update(Guid id, UpdateTodoInputModel todoModel)
     {
         if (todoModel == null)
-            return Result.Fail(error: "Todo cannot be null.", data: 400);
+            return Result.Fail("Todo cannot be null."); // <-- Result
 
-        // Store to db.
+        Todo todo = FindById(id);
+        try
+        {
+            // update database command.
+        }
+        catch (Exception ex)
+        {
+            return Result.Fail(ex); // <-- Result
+        }
 
-        return Result.Ok(data: 200).WithMessage(message: "Todo created successfully!");
+        return Result.Ok(todo).WithMessage(message: "Todo created successfully!"); // <-- Result
     }
 ```
 
