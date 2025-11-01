@@ -14,7 +14,7 @@ Unified result handling & data paging for .NET projects. Fast, simple, and clean
 dotnet add package AnyResults
 ```
 
-## Examples
+## ⭐ `Result` Examples
 ### 1. Basic Result:
 ```csharp
 var result = Result.Ok().WithMessage("Operation successful");
@@ -65,4 +65,14 @@ if (result.IsSuccess == false)
 {
    Console.WriteLine(result.Messages[0]); // An error was occurred!
 }
+```
+## ⭐ PagedQuery Examples:
+### 1. PagedResult with IQueryable
+```csharp
+    public async Task<PagedResult<Users>> PageByBusinessIdAsync(PaginationQuery page)
+    {
+        var query = context.Users.AsQueryable();
+
+        var paged = await query.ToPagedResultAsync(page, ct);
+    }
 ```
