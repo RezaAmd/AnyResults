@@ -21,11 +21,18 @@ public class Result : BaseResult
     => new Result<TData>(false, data, messages);
     public static Result<TData> Fail<TData>(string? error = null, TData? data = default)
         => new Result<TData>(false, data, [error!]);
+
     /// <summary>
     /// Map extension message to result message.
     /// </summary>
     public static Result Fail(Exception exception)
         => new(false, [exception.Message]);
+
+    /// <summary>
+    /// Map extension message to result message.
+    /// </summary>
+    public static Result<TData> Fail<TData>(Exception exception, TData data)
+        => new Result<TData>(false, data, [exception.Message]);
     #endregion
 }
 
