@@ -17,6 +17,15 @@ public class Result : BaseResult
     => new(false, [message]);
     public static Result Fail(List<string>? messages = null)
     => new(false, messages);
+    public static Result<TData> Fail<TData>(List<string>? messages = null, TData? data = default)
+    => new Result<TData>(false, data, messages);
+    public static Result<TData> Fail<TData>(string? error = null, TData? data = default)
+        => new Result<TData>(false, data, [error!]);
+    /// <summary>
+    /// Map extension message to result message.
+    /// </summary>
+    public static Result Fail(Exception exception)
+        => new(false, [exception.Message]);
     #endregion
 }
 
