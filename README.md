@@ -1,2 +1,2 @@
 # AnyResults
-Result wrapper for manage command (result) &amp; query (pagination) in .net
+Data transfer integration in .net project.
