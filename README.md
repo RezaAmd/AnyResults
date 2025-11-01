@@ -1,3 +1,4 @@
+<a href="https://www.nuget.org/packages/AnyResults/" target="_blank"><img src="https://img.shields.io/nuget/v/AnyResults.svg" alt="NuGet" /></a>
 <a href="https://www.nuget.org/packages/AnyResults" target="_blank"><img src="https://img.shields.io/nuget/dt/AnyResults"/></a>
 # AnyResults
 
