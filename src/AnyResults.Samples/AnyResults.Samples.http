@@ -1,6 +1,7 @@
 @AnyResults.Samples_HostAddress = http://localhost:5140
 
-GET {{AnyResults.Samples_HostAddress}}/todo-list/
+GET {{AnyResults.Samples_HostAddress}}/todo/
 Accept: application/json
 
-###
+POST {{AnyResults.Samples_HostAddress}}/todo/
+Accept: application/json
